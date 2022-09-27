@@ -1,4 +1,6 @@
 package com.emppayroll.conttroller;
+import com.emppayroll.dto.EmpDto;
+import com.emppayroll.dto.ResponseDto;
 import com.emppayroll.model.EmployeeEntity;
 import com.emppayroll.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +22,24 @@ public class EmployeeController {
         /*
         Extending GreetingController to use Services Layer to get Simple Greeting message
          */
-
-    @GetMapping("/service")
+    @GetMapping("/serviceCall")
     public String serviceCall() {
         return service.welcomeMessage();
     }
 
     //Insert Employee Data
-    @PostMapping("/post")
-    public EmployeeEntity addData(@RequestBody EmployeeEntity empData) {
-        service.saveData(empData);
-        return empData;
+    @PostMapping("/saveData")
+    public ResponseDto addEmpData(@RequestBody EmpDto empData) {
+        EmployeeEntity response = service.saveData(empData);
+        return new ResponseDto("Data Added Successfully", response);
     }
-
     //Get by ID
-    @GetMapping("/id/{id}")
+    @GetMapping("/findById/{id}")
     public Optional<EmployeeEntity> getById(@PathVariable Long id){
         return service.findById(id);
     }
-
     //get all the data
-    @GetMapping("/all")
+    @GetMapping("/printAll")
     public List<EmployeeEntity> findAllData() {
         return service.findAllData();
     }
@@ -49,7 +48,6 @@ public class EmployeeController {
     public EmployeeEntity editData(@RequestBody EmployeeEntity empData, @PathVariable long id) {
         return service.editData(empData, id);
     }
-
     //Delete the data by id
     @DeleteMapping("/delete/{id}")
     public String deleteData(@PathVariable Long id) {

@@ -1,4 +1,5 @@
 package com.emppayroll.service;
+import com.emppayroll.dto.EmpDto;
 import com.emppayroll.model.EmployeeEntity;
 import com.emppayroll.repo.Repo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,10 @@ public class EmployeeService {
         return "This is Employee Payroll App";
     }
 
-    public EmployeeEntity saveData(EmployeeEntity empData) {
-        repository.save(empData);
-        return empData;
+    public EmployeeEntity saveData(EmpDto empData) {
+        EmployeeEntity newEmpData = new EmployeeEntity(empData);
+        repository.save(newEmpData);
+        return newEmpData;
     }
     public Optional<EmployeeEntity> findById(Long id) {
         return repository.findById(id);
@@ -37,6 +39,7 @@ public class EmployeeService {
             existingGreet.setProfilePic(empData.getProfilePic());
             existingGreet.setAddress(empData.getAddress());
             existingGreet.setSalary(empData.getSalary());
+            existingGreet.setStartDate(empData.getStartDate());
             existingGreet.setNotes(empData.getNotes());
             return repository.save(existingGreet);
         }
