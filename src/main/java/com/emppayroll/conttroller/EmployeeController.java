@@ -64,31 +64,31 @@ public class EmployeeController {
     public ResponseEntity<ResponseDto> addEmpData(@RequestBody EmpDto empData) {
         EmployeeEntity response = service.saveData(empData);
         ResponseDto dtoResponse = new ResponseDto("Data Added Successfully", Optional.ofNullable(response));
-        return new ResponseEntity(dtoResponse, HttpStatus.CREATED);
+        return new ResponseEntity<>(dtoResponse, HttpStatus.CREATED);
     }
     //Get by ID
     @GetMapping("/searchByid/{id}")
     public ResponseEntity<ResponseDto> getEmpData(@PathVariable Long id) {
-        Optional<EmployeeEntity> empData= null;
+        Optional<EmployeeEntity> empData;
         empData = service.findById(id);
         ResponseDto respDTO= new ResponseDto("Employee details by ID", empData);
-        return new ResponseEntity(respDTO, HttpStatus.OK);
+        return new ResponseEntity<>(respDTO, HttpStatus.OK);
     }
     //get all the data
     @GetMapping("/printAllDto")
     public ResponseEntity<ResponseDto> findAllData() {
-        List<EmployeeEntity> empDatalist = null;
+        List<EmployeeEntity> empDatalist;
         empDatalist = service.findAllData();
         ResponseDto respDTO = new ResponseDto("All Employee Data", empDatalist);
-        return new ResponseEntity(respDTO, HttpStatus.OK);
+        return new ResponseEntity<>(respDTO, HttpStatus.OK);
     }
     //Edit or Update the data by id
     @PutMapping("/editDto/{id}")
     public ResponseEntity<ResponseDto> updateEmpData(@PathVariable Long id, @RequestBody EmpDto empDto) {
-        Optional<EmployeeEntity> empData = null;
+        Optional<EmployeeEntity> empData;
         empData = Optional.ofNullable(service.editData(empDto, id));
         ResponseDto respDTO= new ResponseDto("Data Updated Successfully", empData);
-        return new ResponseEntity (respDTO, HttpStatus.OK);
+        return new ResponseEntity<>(respDTO, HttpStatus.OK);
     }
 
     //Delete the data by id
@@ -96,6 +96,6 @@ public class EmployeeController {
     public ResponseEntity <ResponseDto> deleteEmpData(@PathVariable Long id) {
         service.deleteData(id);
         ResponseDto respDTO= new ResponseDto("Deleted Successfully", "Deleted id: " + id);
-        return new ResponseEntity(respDTO, HttpStatus.OK);
+        return new ResponseEntity<>(respDTO, HttpStatus.OK);
     }
 }
