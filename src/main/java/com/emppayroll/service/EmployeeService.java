@@ -30,21 +30,20 @@ public class EmployeeService {
         return repository.findAll();
     }
 
-    public EmployeeEntity editData(EmployeeEntity empData, Long id) {
+    public EmployeeEntity editData(EmpDto empData, Long id) {
         EmployeeEntity existingGreet = repository.findById(id).orElse(null);
         if (existingGreet != null) {
             existingGreet.setEmployeeId(empData.getEmployeeId());
             existingGreet.setFirstName(empData.getFirstName());
-            existingGreet.setLastName(empData.getLastName());
-            existingGreet.setProfilePic(empData.getProfilePic());
-            existingGreet.setAddress(empData.getAddress());
+//            existingGreet.setLastName(empData.getLastName());
+//            existingGreet.setProfilePic(empData.getProfilePic());
+//            existingGreet.setAddress(empData.getAddress());
             existingGreet.setSalary(empData.getSalary());
-            existingGreet.setStartDate(empData.getStartDate());
-            existingGreet.setNotes(empData.getNotes());
+//            existingGreet.setStartDate(empData.getStartDate());
+//            existingGreet.setNotes(empData.getNotes());
             return repository.save(existingGreet);
         }
-        else
-            return null;
+        return repository.save(existingGreet);
     }
     public void deleteData(Long id) {
         repository.deleteById(id);
