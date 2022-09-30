@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,7 +62,7 @@ public class EmployeeController {
 //    }
     //UseCase4
     @PostMapping("/postDto")
-    public ResponseEntity<ResponseDto> addEmpData(@RequestBody EmpDto empData) {
+    public ResponseEntity<ResponseDto> addEmpData(@Valid @RequestBody EmpDto empData) {
         EmployeeEntity response = service.saveData(empData);
         ResponseDto dtoResponse = new ResponseDto("Data Added Successfully", Optional.ofNullable(response));
         return new ResponseEntity<>(dtoResponse, HttpStatus.CREATED);
@@ -84,7 +85,7 @@ public class EmployeeController {
     }
     //Edit or Update the data by id
     @PutMapping("/editDto/{id}")
-    public ResponseEntity<ResponseDto> updateEmpData(@PathVariable Long id, @RequestBody EmpDto empDto) {
+    public ResponseEntity<ResponseDto> updateEmpData(@PathVariable Long id,@Valid @RequestBody EmpDto empDto) {
         Optional<EmployeeEntity> empData;
         empData = Optional.ofNullable(service.editData(empDto, id));
         ResponseDto respDTO= new ResponseDto("Data Updated Successfully", empData);
