@@ -1,5 +1,6 @@
 package com.emppayroll.service;
 import com.emppayroll.dto.EmpDto;
+import com.emppayroll.exception.EmployeePayrollException;
 import com.emppayroll.model.EmployeeEntity;
 import com.emppayroll.repo.Repo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,12 @@ public class EmployeeService {
     }
 
     public List<EmployeeEntity> findAllData() {
-        return repository.findAll();
+        if (repository.findAll().isEmpty())
+        {
+            System.out.println("No data found");
+            throw new EmployeePayrollException("No employee in database.");
+
+        } else return repository.findAll();
     }
 
     public EmployeeEntity editData(EmpDto empData, Long id) {
