@@ -85,7 +85,7 @@ public class EmployeeController {
     }
     //Edit or Update the data by id
     @PutMapping("/editDto/{id}")
-    public ResponseEntity<ResponseDto> updateEmpData(@PathVariable Long id,@Valid @RequestBody EmpDto empDto) {
+    public ResponseEntity<ResponseDto> updateEmpData(@PathVariable Long id, @RequestBody EmpDto empDto) {
         Optional<EmployeeEntity> empData;
         empData = Optional.ofNullable(service.editData(empDto, id));
         ResponseDto respDTO= new ResponseDto("Data Updated Successfully", empData);
