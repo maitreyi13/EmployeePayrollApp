@@ -24,7 +24,9 @@ public class EmployeeService {
         return newEmpData;
     }
     public Optional<EmployeeEntity> findById(Long id) {
-        return repository.findById(id);
+        if (repository.findById(id).isPresent()) {
+            return repository.findById(id);
+        } else throw new EmployeePayrollException("No employee in database.");
     }
 
     public List<EmployeeEntity> findAllData() {
