@@ -17,8 +17,10 @@ public class EmployeeEntity {
     Long employeeId;
     String firstName;
     String lastName;
+    String department;
     String profilePic;
     String address;
+    String gender;
     Long salary;
     Date startDate;
     String notes;
@@ -26,7 +28,9 @@ public class EmployeeEntity {
     public EmployeeEntity(EmpDto empData) {
         this.firstName = empData.getFirstName();
         this.lastName = empData.getLastName();
+        this.department = empData.getDepartment();
         this.address = empData.getAddress();
+        this.gender = empData.getGender();
         this.profilePic = empData.getProfilePic();
         this.salary = empData.getSalary();
         this.startDate = empData.getStartDate();
