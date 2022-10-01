@@ -22,9 +22,11 @@ public class EmpDto {
     @NotEmpty (message = "Last name can not be empty")
     @Pattern(regexp="^[A-Z][a-zA-Z\\s]{2,}$", message="Invalid Name(Should have 1 Upper Case and min 3 Characters.)")
     String lastName;
+    @NotEmpty (message = "Department Cannot be Empty")
     String department;
     @NotEmpty(message = "Address Cannot be Empty")
     String address;
+    @NotEmpty(message = "Gender Cannot be Empty")
     String gender;
     String profilePic;
     @Min(value = 5000, message="Salary Should be More than 5000")
