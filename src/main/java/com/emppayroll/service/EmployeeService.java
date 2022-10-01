@@ -20,13 +20,13 @@ public class EmployeeService {
 
     public EmployeeEntity saveData(EmpDto empData) {
         EmployeeEntity newEmpData = new EmployeeEntity(empData);
-        repository.save(newEmpData);
+        repository.save(newEmpData);           //UC6 - save in repo
         return newEmpData;
     }
     public Optional<EmployeeEntity> findById(Long id) {
         if (repository.findById(id).isPresent()) {
             return repository.findById(id);
-        } else throw new EmployeePayrollException("No employee in database.");
+        } else throw new EmployeePayrollException("No employee in database.");          //UC10
     }
 
     public List<EmployeeEntity> findAllData() {
