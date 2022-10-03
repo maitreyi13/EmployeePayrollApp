@@ -106,4 +106,10 @@ public class EmployeeController {
         ResponseDto respDTO= new ResponseDto("Employee details of "+firstName+" :", empDatalist);
         return new ResponseEntity<>(respDTO, HttpStatus.OK);
     }
+    @GetMapping("/empDepartment/{department}")
+    public ResponseEntity <ResponseDto> getEmployeeDataByDepartment(@PathVariable String department) {
+        List<EmployeeEntity> empDataList = service.findByDepartment(department);
+        ResponseDto respDTO = new ResponseDto("Get Data By Department", empDataList);
+        return new ResponseEntity<>(respDTO, HttpStatus.OK);
+    }
 }

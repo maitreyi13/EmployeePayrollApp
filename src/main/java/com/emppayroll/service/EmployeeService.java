@@ -59,5 +59,7 @@ public class EmployeeService {
     public List<EmployeeEntity> findByName(String firstName) {
         return (repository.findEmployeeByName(firstName));
     }
-
+    public List<EmployeeEntity> findByDepartment(String department) {
+        return repository.findByDepartment(department);
+    }
 }
