@@ -99,4 +99,11 @@ public class EmployeeController {
         ResponseDto respDTO= new ResponseDto("Deleted Successfully", "Deleted id: " + id);
         return new ResponseEntity<>(respDTO, HttpStatus.OK);
     }
+    @GetMapping("/empName/{firstName}")
+    public ResponseEntity<ResponseDto> getEmployeeByName(@PathVariable String firstName) {
+        List<EmployeeEntity> empDatalist;
+        empDatalist = service.findByName(firstName);
+        ResponseDto respDTO= new ResponseDto("Employee details of "+firstName+" :", empDatalist);
+        return new ResponseEntity<>(respDTO, HttpStatus.OK);
+    }
 }

@@ -56,4 +56,8 @@ public class EmployeeService {
     public void deleteData(Long id) {
         repository.deleteById(id);
     }
+    public List<EmployeeEntity> findByName(String firstName) {
+        return (repository.findEmployeeByName(firstName));
+    }
+
 }
